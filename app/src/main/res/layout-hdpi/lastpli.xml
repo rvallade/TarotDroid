@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@android:color/background_dark"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.28" >
+
+        <ImageView
+            android:id="@+id/spacer"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/spacer" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/spacer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="1dp" >
+
+            <!-- Joueur 1 -->
+
+            <ImageView
+                android:id="@+id/lastCarteJ1"
+                android:layout_width="53dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/carte_dos" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/spacer"
+            android:gravity="left" >
+
+            <ImageView
+                android:id="@+id/lastCarteJ2"
+                android:layout_width="53dp"
+                android:layout_height="100dp"
+                android:background="#1D702D"
+                android:src="@drawable/carte_dos" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/spacer"
+            android:gravity="right">
+
+            <ImageView
+                android:id="@+id/lastCarteJ4"
+                android:layout_width="53dp"
+                android:layout_height="100dp"
+                android:background="#1D702D"
+                android:src="@drawable/carte_dos" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spacer"
+            android:layout_centerHorizontal="true" >
+
+            <ImageView
+                android:id="@+id/lastCarteHuman"
+                android:layout_width="53dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/carte_dos" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="5dp"
+            android:src="@drawable/spacer" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <Button
+        android:id="@+id/btnCloseLastPli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fermer" />
+
+    </LinearLayout>
+</LinearLayout>

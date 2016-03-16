@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- menu -->
+    <string name="optNewGame">Nouveau Jeu</string>
+    <string name="optDernierPli">Dernier Pli</string>
+    <string name="optScores">Scores</string>
+    <string name="optResetScores">Reset</string>
+    <string name="optStats">Stats</string>
+    <string name="optChangeName">Modifier le nom du Joueur</string>
+    <string name="optInfos">Infos</string>
+    <string name="optQuit">Quitter</string>
+    
+    <!-- Activity -->
+    <string name="namePlayer">Joueur</string>
+    
+    <string name="lepreneur">le preneur</string>
+    <string name="ladefense">la défense</string>
+    
+    <string name="passe">Passe</string>
+    <string name="prise">Prise</string>
+    <string name="garde">Garde</string>
+    <string name="gardesans">Garde Sans</string>
+    <string name="gardecontre">Garde Contre</string>
+
+    <string name="btnvaliderpoignee">Valider Poignée</string>
+    <string name="btnvaliderecart">Valider Ecart</string>
+    <string name="btnscores">Scores</string>
+    <string name="btnencheres">Enchères</string>
+
+	<string name="txtcalcul1">{0} annonce une {1}. </string>
+	<string name="txtcalcul2">{0} fait {1} points pour {2} (==> {3} bout(s).\r\n).</string>
+	<string name="txtcalcul3chute">{0} chute de {1} points. </string>
+	<string name="txtcalcul3passe">{0} passe de {1} points.\r\n</string>
+	<string name="txtcalcul4">Poignées : {0} points.\r\n</string>
+	<string name="txtcalcul5">Points réalisés par le preneur : {0}{1}x({2} + 25 + {3}) = {4} points.\r\n</string>
+	<string name="txtcalcul6petitbout">Prime de Petit au bout : {0} pour {1}.\r\n</string>
+	<string name="txtcalculscore">Score de {0} : {1} ==> {2}.\r\n</string>
+	
+	<string name="textchien">{0} prends! </string>
+	<string name="dialogchien">Voici le chien : </string>
+	<string name="dialogpoignee">{0} présente une {1} poignée.</string>
+	<string name="dialogaskpoignee">Voulez-vous présenter une {0} poignée?</string>
+	<string name="dialogaskquit">Voulez-vous vraiment quitter l\'application?\r\n(la partie en cours ne sera pas sauvée)</string>
+	
+	<string name="txtannonce">Quelle est votre annonce?</string>
+	
+	<!-- Erreurs -->
+	<string name="errorcantplaycarte">Vous ne pouvez pas jouer cette carte.</string>
+	<string name="errorchien">Vous devez choisir 6 cartes.</string>
+	<string name="errorpoignee">Vous devez choisir d\'autres atouts pour completer votre poignée.</string>
+	<string name="erroroptionnotavailable">Option non disponible pour le moment.</string>
+	
+	
+	<!-- Infos -->
+	<string name="infonobodytakes">Personne ne prend!</string>
+	<string name="inforesetscores">Scores remis à zéro!</string>
+	<string name="inforesetstats">Statistiques remis à zéro!</string>
+	
+	<!-- Divers -->
+	<string name="yes">Oui</string>
+	<string name="no">Non</string>
+	<string name="rules">fr.wikipedia.org/wiki/Tarot</string>
+	
+	<!-- Stats -->
+	<string name="gamesTotal">Nb Parties Jouées : </string>
+	<string name="gamesWin">Nb Parties Gagnées (attaque) : </string>
+	<string name="gamesWinTeam">Nb Parties Gagnées (défense) : </string>
+	<string name="gamesLost">Nb Parties Perdues (attaque) : </string>
+	<string name="gamesLostTeam">Nb Parties Perdues (défense) : </string>
+	<string name="gamesTaken">Nb Parties Prises : </string>
+	<string name="gamesPrise">Nb Prises : </string>
+	<string name="gamesGarde">Nb Gardes : </string>
+	<string name="gamesGardeSans">Nb Garde Sans : </string>
+	<string name="gamesGardeContre">Nb Garde Contre : </string>
+	<string name="btnStatsCLose">Fermer</string>
+	<string name="btnStatsReset">Reset</string>
+</resources>
