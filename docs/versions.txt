@@ -1,0 +1,97 @@
+V0 : première livraison, possibilité de jouer.
+V0.1 : censée corriger certains bugs....
+V0.2 : 
+_ ajout de la case à cocher pour séléctionner les cartes de l'écart.
+_ modification de l'icone
+_ modification de la couleur du fond, nom en rouge pour le joueur qui joue en premier
+_ ajout du texte qui dit qui prend quoi lors des enchères.
+_ possibilité de poignées.
+V0.3 :
+_ modification de l'icone
+_ modification de la vitesse de jeu.
+_ augmentation de la taille du jeu, diminution de celle des cartes du joueur.
+V0.4 : 28 juin 2012
+_ gestion de la poignée humaine
+_ gestion de la fin de jeu qui plante (erreur avec indiceDonneur à -1)
+_ augmentation de la taille des cartes des joueurs
+_ ajout d'un écran des scores final
+_ modification du message affiché quand on clique sur "reset"
+V0.5 : 29 juin 2012
+_ ajout de la possibilité de choisir le nom du joueur via l'utilisation des preferences (+ menu)
+_ diminution de la taille de police des noms des joueurs
+_ retrait des title sur toutes les boites de dialogues
+_ modification de l'image du jeu dans les infos
+_ ajout du score global dans l'affichage du score de la partie en cours
+_ optimisation du jeu de l'attaquant
+_ correction du bug qui permettait de valider la poignée alors qu'on avait pas le nombre d'atout qu'il fallait
+_ correction du bug sur gereNonPrise(TarotDroidActivity.java:638) (pb sur indiceDonneur)
+V0.6 : 2 Juillet 2012
+_ modification de la liste des encheres
+_ correction bug sur prise en Garde S et Garde C
+_ correction bug sur "Le joueur fait une Passe..." qui faisait des scores à 0
+_ amélioration du jeu robot en defense
+_ correction du bug sur le texte du nom du joueur sans le contrat effectué.
+_ augmentation du temps de jeu des robots (1500 ms contre 1000 ms)
+_ ajout du bouton pour voir les scores à la fin de la partie
+_ enregistrement des scores
+_ remise à zéro des scores possible via le menu
+_ ajout du menu des scores globaux
+V0.7 : 3 Juillet
+_ corrections mineures
+V0.8 : 25 Juillet
+_ correction du bug sur les scores quand le joueur prend et perd (tous le monde est positif ou negatif)
+_ amélioration du jeu en defense (quand il ne reste que des atouts dont le petit et que le robot entame, il lancait le petit)
+_ externalisation de toutes les Strings (en vue d'internationalisation)
+_ modification de la durée d'affichage du Toast affiché quand on n'a pas le droit de jouer la carte
+_ modification de la méthode de comptage en cas de différence de points avec virgule
+_ ajout des stats : nb de parties jouées, prises, gagnées, perdues 
+	(nb de prise, de gardes, de gardes sans et contre sauvegardées mais non prises en compte pour l'instant)
+_ ajout d'une Dialog pour savoir si le joueur veut vraiment quitter l'application en faisant back
+_ gestion de la persistance des données
+V0.9 : 26 Juillet MISE A DISPO
+_ correction du bug sur l'affichage des stats.
+V0.10 : 20 Aout 2012
+_ correction bug sur le jeu en defense
+_ integration de bugsense
+V0.11 : 20 Mars 2013
+_ gestion des resolution (seulement HDPI qui correspond au GS et GS2)
+_ retrait de bugsense
+V0.12: 27 Mars 2013
+_ correction du jeu du robot d'attaque en cas d'ouverture. Il pouvait jouer une carte a point non maitre et donc se la faire prendre
+_ suppression du nnom et du prenom
+_ ajout du lien vers les regles
+_ gestion des resolution (ajout de  XHDPI qui correspond au GS3 et Note)
+_ implementation d'ACRA
+V0.13: 28 Mars 2013
+_ modification du lien vers les regles.
+V0.14: 
+_ ajout d'une log en cas de pli pour la defense
+_ modification du playRobotAttaque quand il n'y a plus de carte dans une couleur jouee
+_ si le preneur n'a plus d'atout et que le defenseur a encore le petit et que c'est a lui de jouer en premier, il ne jouera pas le petit 
+_ nouvelle interface pour les xhdpi uniquement pour l'instant, permet d'avoir des ecrans moins large en gardant la meme disposition (impossible avec les cartes en croix)
+_ changement du texte de la dialog du chien
+_ implementation de JSON pour permettre la reprise apres la destruction de l'application
+_ changement dans le display du score: maintenant les scores sont calcules a la fin de la partie, et plus quand l'utilisateur clique sur le bouton
+_ possibilité de voir le dernier pli.
+
+A PREVOIR :
+_ voir comment bien separer le jeu en 2 suivants tous les types d'ecrans
+_ faire en sorte que le preneur ne fasse pas couper avec des cartes a point.
+_ modification du nom de l'application Tarot4Droid, et donc de l'icone
+_ ajout des stats : nb de prise, de gardes, de gardes sans et contre
+_ modification du visuel des cartes pour éviter de jouer avec les offcielles (STANDBY)
+_ ajout d'une log visible au sein de l'application (idem logcat) via menu "Logs" qui ouvrirait une fenetre comprenant 
+un text area avec la log...
+_ faire un peu de refactoring dans PlayerTarot et notamment dans les methode de "play"
+
+_ use 
+DisplayMetrics metrics = new DisplayMetrics();
+getWindowManager().getDefaultDisplay().getMetrics(metrics);
+switch(metrics.densityDpi){
+     case DisplayMetrics.DENSITY_LOW:
+                break;
+     case DisplayMetrics.DENSITY_MEDIUM:
+                 break;
+     case DisplayMetrics.DENSITY_HIGH:
+                 break;
+}
