@@ -1,8 +1,5 @@
 package fr.rv.tarotdroid;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.commun.game.Carte;
 import fr.tarot.utils.TarotReferentiel;
 
@@ -19,13 +20,13 @@ public class CardImageWithCheckBoxAdapter extends TarotDroidBaseAdapter {
     private LayoutInflater mInflater;
     private int compteur = 0;
     List<Carte> listeCartes;
-    
+
     public CardImageWithCheckBoxAdapter(Context c, List<Carte> listeCartes) {
         this.listeCartes = listeCartes;
         mContext = c;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mThumbIds = new Integer[listeCartes.size()];
-        for (int i=0;i<listeCartes.size();i++){
+        for (int i = 0; i < listeCartes.size(); i++) {
             mThumbIds[i] = listeCartes.get(i).getResource();
             thumbnailsselection[i] = false;
         }
@@ -62,19 +63,19 @@ public class CardImageWithCheckBoxAdapter extends TarotDroidBaseAdapter {
         }
         holder.checkbox.setId(position);
         holder.imageview.setId(position);
-        
+
         holder.checkbox.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 CheckBox cb = (CheckBox) v;
                 int id = cb.getId();
-                if (thumbnailsselection[id]){
-                    Log.d("TarotDroid", "Le joueur retire le "+ listeCartes.get(id).toString());
+                if (thumbnailsselection[id]) {
+                    Log.d("TarotDroid", "Le joueur retire le " + listeCartes.get(id).toString());
                     cb.setChecked(false);
                     thumbnailsselection[id] = false;
                     compteur--;
                 } else {
-                    if (compteur<6){
-                        Log.d("TarotDroid", "Le joueur a choisi le "+ listeCartes.get(id).toString());
+                    if (compteur < 6) {
+                        Log.d("TarotDroid", "Le joueur a choisi le " + listeCartes.get(id).toString());
                         cb.setChecked(true);
                         thumbnailsselection[id] = true;
                         compteur++;
@@ -87,22 +88,22 @@ public class CardImageWithCheckBoxAdapter extends TarotDroidBaseAdapter {
         holder.imageview.setImageResource(mThumbIds[position]);
         holder.checkbox.setChecked(thumbnailsselection[position]);
         holder.id = position;
-        
-        if (listeCartes.get(position).getIdCouleur()==TarotReferentiel.getIdAtout()
-                || "R".equals(listeCartes.get(position).getValeurFaciale())){
+
+        if (listeCartes.get(position).getIdCouleur() == TarotReferentiel.getIdAtout()
+                || "R".equals(listeCartes.get(position).getValeurFaciale())) {
             holder.checkbox.setEnabled(false);
         }
-            
+
         return convertView;
     }
-    
+
     // references to our images
-    private Integer[] mThumbIds = { R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos,
+    private Integer[] mThumbIds = {R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos,
             R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos,
             R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos,
-            R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, 
+            R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos,
             R.drawable.carte_dos};
-    private boolean[] thumbnailsselection = { false, false, false, false,
+    private boolean[] thumbnailsselection = {false, false, false, false,
             false, false, false, false, false, false, false,
             false, false, false, false, false, false, false,
             false, false, false, false, false, false};
@@ -112,13 +113,14 @@ public class CardImageWithCheckBoxAdapter extends TarotDroidBaseAdapter {
         CheckBox checkbox;
         int id;
     }
-    
-    public int getNbCartesEcartees(){
+
+    public int getNbCartesEcartees() {
         return compteur;
     }
-    public List<Integer> getItemsChecked(){
+
+    public List<Integer> getItemsChecked() {
         List<Integer> itemsChecked = new ArrayList<Integer>();
-        for(int i=0;i<thumbnailsselection.length;i++){
+        for (int i = 0; i < thumbnailsselection.length; i++) {
             if (thumbnailsselection[i]) itemsChecked.add(i);
         }
         return itemsChecked;

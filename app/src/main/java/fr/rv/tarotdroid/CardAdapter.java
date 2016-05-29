@@ -1,19 +1,20 @@
 package fr.rv.tarotdroid;
 
-import java.util.List;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import java.util.List;
+
 import fr.commun.game.Carte;
 
 public class CardAdapter extends TarotDroidBaseAdapter {
     public CardAdapter(Context c, List<Carte> listeIds) {
         mContext = c;
         mThumbIds = new Integer[listeIds.size()];
-        for (int i=0;i<listeIds.size();i++){
+        for (int i = 0; i < listeIds.size(); i++) {
             mThumbIds[i] = listeIds.get(i).getResource();
         }
     }
@@ -51,9 +52,9 @@ public class CardAdapter extends TarotDroidBaseAdapter {
     }
 
     // references to our images
-    private Integer[] mThumbIds = { R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos,
+    private Integer[] mThumbIds = {R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos,
             R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos,
             R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos,
-            R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos };
+            R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos, R.drawable.carte_dos};
 
 }

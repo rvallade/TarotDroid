@@ -31,4 +31,4 @@
         android:id="@+id/optionInfos"
         android:title="@string/optInfos">
     </item>
-</menu><!-- From: file:/C:/Users/Romain/StudioProjects/TarotDroid/app/src/main/res/menu/menu_principal.xml -->
+</menu>

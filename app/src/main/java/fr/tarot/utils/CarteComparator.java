@@ -9,28 +9,28 @@ import fr.commun.game.Carte;
  * Atout/coeur/trefle/carreau/pique
  * Atout<pique (suivant CardReferentiel)
  * du 1 au R et de l'excuse au 21
- * @author Romain
  *
+ * @author Romain
  */
-public class CarteComparator implements Comparator<Carte>  {
+public class CarteComparator implements Comparator<Carte> {
 
-	public int compare(Carte carte1, Carte carte2) {
-		// Atout/coeur/trefle/carreau/pique
-		// Atout<pique (suivant CardReferentiel)
-		// du 1 au R et de l'excuse au 21
-		if (carte1.getIdCouleur()==carte2.getIdCouleur()){
-			// meme couleur, pas d'egalite possible
-			if (carte1.getValeurAbstraite()>carte2.getValeurAbstraite()){
-				return 1;
-			}
-			return -1;
-		} else {
-			// deux couleur differentes
-			if (carte1.getIdCouleur()>carte2.getIdCouleur()){
-				return 1;
-			}
-			return -1;
-		}
-	}
+    public int compare(Carte carte1, Carte carte2) {
+        // Atout/coeur/trefle/carreau/pique
+        // Atout<pique (suivant CardReferentiel)
+        // du 1 au R et de l'excuse au 21
+        if (carte1.getIdCouleur() == carte2.getIdCouleur()) {
+            // meme couleur, pas d'egalite possible
+            if (carte1.getValeurAbstraite() > carte2.getValeurAbstraite()) {
+                return 1;
+            }
+            return -1;
+        } else {
+            // deux couleur differentes
+            if (carte1.getIdCouleur() > carte2.getIdCouleur()) {
+                return 1;
+            }
+            return -1;
+        }
+    }
 
 }

@@ -2,25 +2,39 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="416dffe031557a6ba94e27ceed9565308ad72daa">
+        <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\instant-run_f8fc00ab926862215009866c3ca98388b1bf23fb.jar" />
+    </item>
+    <item
         jar="C:\Users\Romain\StudioProjects\TarotDroid\app\libs\jackson-mapper-asl-1.8.10.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="23.0.1"
         sha1="0a2e4067372a6fa7bee7b462231c56152e076553">
-        <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\jackson-mapper-asl-1.8.10-b74a12bcae5413f11a976c4a4cb72bed56d9b386.jar" />
+        <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\jackson-mapper-asl-1.8.10_b74a12bcae5413f11a976c4a4cb72bed56d9b386.jar" />
+    </item>
+    <item
+        jar="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="b63e2c8286f6261a8a9ee624cd1d55b9b031f7f5">
+        <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_e46d12a444d0c644883741994e6b702d80a54bcf.jar" />
     </item>
     <item
         jar="C:\Users\Romain\StudioProjects\TarotDroid\app\libs\acra-4.4.0.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="23.0.1"
         sha1="d2613d074b20674c3d05d6d8615292b6172d1366">
-        <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\acra-4.4.0-6fb04fa6bf26c29a2672dd1002fad647842f708e.jar" />
+        <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\acra-4.4.0_6fb04fa6bf26c29a2672dd1002fad647842f708e.jar" />
     </item>
     <item
         jar="C:\Users\Romain\StudioProjects\TarotDroid\app\libs\jackson-core-asl-1.8.10.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="23.0.1"
         sha1="0c0029e31b827a6ec8bc4aa8daaa564619df3fba">
-        <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\jackson-core-asl-1.8.10-7d5614a43b3909bb7d066a1185f52c3a5c09e848.jar" />
+        <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\jackson-core-asl-1.8.10_7d5614a43b3909bb7d066a1185f52c3a5c09e848.jar" />
     </item>
 
 </items>

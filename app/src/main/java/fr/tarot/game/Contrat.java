@@ -1,50 +1,47 @@
 package fr.tarot.game;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+public enum Contrat {
+    PASSE(-1, 0, "Passe", ""),
+    PRISE(0, 1, "Prise", "P"),
+    GARDE(1, 2, "Garde", "G"),
+    GARDE_SANS(2, 4, "Garde Sans", "GS"),
+    GARDE_COMTRE(3, 6, "Garde Contre", "GC");
 
-public class Contrat {
-	private int id = 0;
-	private String name = null;
-	private String shortName = null;
-    private int multiplicateur = 0;
-	
-	public Contrat(int id, String name, String shortName, int multiplicateur) {
-		this.id = id;
-		this.name = name;
-		this.shortName = shortName;
-		this.multiplicateur = multiplicateur;
-	}
-	
-	public Contrat(JSONObject o) throws JSONException {
-	    id = o.getInt("id");
-	    name = o.getString("name");
-	    shortName = o.getString("shortName");
-	    multiplicateur = o.getInt("multiplicateur");
-	}
+    private int id;
+    private int multiplicateur;
+    private String name;
+    private String shortName;
 
-	public int getId() {
-		return id;
-	}
+    Contrat(int id, int multiplicateur, String name, String shortName) {
+        this.id = id;
+        this.multiplicateur = multiplicateur;
+        this.name = name;
+        this.shortName = shortName;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public int getMultiplicateur() {
+        return multiplicateur;
+    }
 
-	public int getMultiplicateur() {
-		return multiplicateur;
-	}
+    public String getName() {
+        return name;
+    }
 
     public String getShortName() {
         return shortName;
     }
-	
+
+    public int getId() {
+        return id;
+    }
+
+/*public Contrat(JSONObject o) throws JSONException {
+        return getContrat(o.getInt("contratType"));
+    }
+
     public JSONObject toJSON() throws JSONException {
         JSONObject o = new JSONObject();
-        o.put("id", id);
-        o.put("name", (name != null? name : ""));
-        o.put("shortName", (shortName != null? shortName : ""));
-        o.put("multiplicateur", multiplicateur);
+        o.put("contratType", this.getMultiplicateur());
         return o;
-    }
+    }*/
 }

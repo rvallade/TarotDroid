@@ -1,25 +1,25 @@
 package fr.tarot.game;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import fr.commun.game.Carte;
 import fr.commun.utils.Utils;
 import fr.tarot.utils.TarotReferentiel;
 
 public class GameDatas {
-    private int[] nbToursCouleur = { 0, 0, 0, 0, 0 };
-    private int[] nbCouleursPlayed = { 0, 0, 0, 0, 0 };
-    private int[] nbCarteMaitre = { 35, 14, 14, 14, 14 };
+    private int[] nbToursCouleur = {0, 0, 0, 0, 0};
+    private int[] nbCouleursPlayed = {0, 0, 0, 0, 0};
+    private int[] nbCarteMaitre = {35, 14, 14, 14, 14};
     private List<boolean[]> listCoupesJoueurs;
-    private float[] nbPointsRestantsDansCouleur = { 0f, 12f, 12f, 12f, 12f };
-    private boolean[] coupesPreneur = { true, true, true, true, true };
-    private boolean[] coupesInit = { false, false, false, false, false };
+    private float[] nbPointsRestantsDansCouleur = {0f, 12f, 12f, 12f, 12f};
+    private boolean[] coupesPreneur = {true, true, true, true, true};
+    private boolean[] coupesInit = {false, false, false, false, false};
     private boolean petitPlayed = false;
     private static GameDatas game = null;
     private int valueMax = -1;
@@ -48,7 +48,7 @@ public class GameDatas {
         game.setPreneurHasAtouts(o.getBoolean("preneurHasAtouts"));
         {
             JSONArray a = o.getJSONArray("nbToursCouleur");
-            int[] nbToursCouleurTemp = { 0, 0, 0, 0, 0 };
+            int[] nbToursCouleurTemp = {0, 0, 0, 0, 0};
             for (int i = 0; i < a.length(); i++) {
                 nbToursCouleurTemp[i] = a.getInt(i);
             }
@@ -56,7 +56,7 @@ public class GameDatas {
         }
         {
             JSONArray a1 = o.getJSONArray("nbCouleursPlayed");
-            int[] nbCouleursPlayedTemp = { 0, 0, 0, 0, 0 };
+            int[] nbCouleursPlayedTemp = {0, 0, 0, 0, 0};
             for (int i = 0; i < a1.length(); i++) {
                 nbCouleursPlayedTemp[i] = a1.getInt(i);
             }
@@ -64,7 +64,7 @@ public class GameDatas {
         }
         {
             JSONArray a2 = o.getJSONArray("nbCarteMaitre");
-            int[] nbCarteMaitreTemp = { 35, 14, 14, 14, 14 };
+            int[] nbCarteMaitreTemp = {35, 14, 14, 14, 14};
             for (int i = 0; i < a2.length(); i++) {
                 nbCarteMaitreTemp[i] = a2.getInt(i);
             }
@@ -72,7 +72,7 @@ public class GameDatas {
         }
         {
             JSONArray a3 = o.getJSONArray("nbPointsRestantsDansCouleur");
-            float[] nbPointsRestantsDansCouleurTemp = { 0f, 12f, 12f, 12f, 12f };
+            float[] nbPointsRestantsDansCouleurTemp = {0f, 12f, 12f, 12f, 12f};
             for (int i = 0; i < a3.length(); i++) {
                 nbPointsRestantsDansCouleurTemp[i] = (float) a3.getDouble(i);
             }
@@ -80,7 +80,7 @@ public class GameDatas {
         }
         {
             JSONArray a4 = o.getJSONArray("coupesPreneur");
-            boolean[] coupesPreneurTemp = { true, true, true, true, true };
+            boolean[] coupesPreneurTemp = {true, true, true, true, true};
             for (int i = 0; i < a4.length(); i++) {
                 coupesPreneurTemp[i] = a4.getBoolean(i);
             }
@@ -88,7 +88,7 @@ public class GameDatas {
         }
         {
             JSONArray a5 = o.getJSONArray("coupesInit");
-            boolean[] coupesInitTemp = { true, true, true, true, true };
+            boolean[] coupesInitTemp = {true, true, true, true, true};
             for (int i = 0; i < a5.length(); i++) {
                 coupesInitTemp[i] = a5.getBoolean(i);
             }
@@ -98,7 +98,7 @@ public class GameDatas {
             List<boolean[]> listCoupesJoueursTemp = new ArrayList<boolean[]>();
             JSONArray a6 = o.getJSONArray("listCoupesJoueurs");
             for (int i = 0; i < a6.length(); i++) {
-                boolean[] initCoupesJoueurs = { false, false, false, false, false };
+                boolean[] initCoupesJoueurs = {false, false, false, false, false};
                 JSONObject o2 = a6.getJSONObject(i);
                 JSONArray a7 = o2.getJSONArray("coupeJoueur");
                 for (int j = 0; j < a7.length(); j++) {
@@ -128,7 +128,7 @@ public class GameDatas {
     /**
      * Methode qui gere les fin de pli et notamment les comptes sur les cartes
      * maitresses
-     * 
+     *
      * @param pli
      */
     public void finDePli(PliTarot pli) {
@@ -180,16 +180,16 @@ public class GameDatas {
 
     public boolean isCouleurPlayed(int idCouleur) {
         switch (idCouleur) {
-        case 0:
-            return (getNbAtoutPlayed() != 0);
-        case 1:
-            return (getNbCoeurPlayed() != 0);
-        case 2:
-            return (getNbTreflePlayed() != 0);
-        case 3:
-            return (getNbCarreauPlayed() != 0);
-        default:
-            return (getNbPiquePlayed() != 0);
+            case 0:
+                return (getNbAtoutPlayed() != 0);
+            case 1:
+                return (getNbCoeurPlayed() != 0);
+            case 2:
+                return (getNbTreflePlayed() != 0);
+            case 3:
+                return (getNbCarreauPlayed() != 0);
+            default:
+                return (getNbPiquePlayed() != 0);
         }
     }
 
@@ -231,7 +231,7 @@ public class GameDatas {
      * de la couleur. Atouts et couleurs. Attention : prends en compte les
      * cartes posees sur le pli (un 20 sera maitre si le 21 est joue au meme pli
      * mais avant.)
-     * 
+     *
      * @param carte
      * @return
      */
@@ -243,7 +243,7 @@ public class GameDatas {
      * Methode a n'utiliser que pour savoir si la carte actuellement maitresse
      * sur le pli est la carte la plus forte du jeu. Ne fonctionne que pour les
      * atouts.
-     * 
+     *
      * @param carte
      * @return
      */

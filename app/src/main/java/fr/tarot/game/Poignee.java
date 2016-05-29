@@ -16,14 +16,14 @@ public class Poignee {
         this.nbPoints = nbPoints;
         this.nbAtoutsMin = nbAtoutsMin;
     }
-    
+
     public Poignee(JSONObject o) throws JSONException {
         id = o.getInt("id");
         name = o.getString("name");
         nbPoints = o.getInt("nbPoints");
         nbAtoutsMin = o.getInt("nbAtoutsMin");
     }
-    
+
     public int getId() {
         return id;
     }

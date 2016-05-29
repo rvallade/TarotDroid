@@ -46,4 +46,4 @@
         android:text="@string/rules"
         android:textSize="20dp" />
     
-</RelativeLayout><!-- From: file:/C:/Users/Romain/StudioProjects/TarotDroid/app/src/main/res/layout/infos.xml -->
+</RelativeLayout>

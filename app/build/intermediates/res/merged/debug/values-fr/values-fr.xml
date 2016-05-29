@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Romain/StudioProjects/TarotDroid/app/src/main/res/values-fr/string.xml -->
-    <eat-comment/>
     <string name="btnStatsCLose">Fermer</string>
     <string name="btnStatsReset">Reset</string>
     <string name="btnencheres">Enchères</string>

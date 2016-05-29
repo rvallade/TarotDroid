@@ -125,4 +125,4 @@
             android:text="@string/btnStatsCLose" />
 
     </LinearLayout>
-</LinearLayout><!-- From: file:/C:/Users/Romain/StudioProjects/TarotDroid/app/src/main/res/layout/stats.xml -->
+</LinearLayout>

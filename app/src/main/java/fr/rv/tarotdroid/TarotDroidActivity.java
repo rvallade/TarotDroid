@@ -1,13 +1,5 @@
 package fr.rv.tarotdroid;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -39,6 +31,15 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import fr.commun.game.Carte;
 import fr.commun.utils.Logs;
 import fr.commun.utils.Utils;
@@ -132,7 +133,7 @@ public class TarotDroidActivity extends Activity {
             this.removeMessages(0);
             sendMessageDelayed(obtainMessage(0), delayMillis);
         }
-    };
+    }
 
     // la carte jouee par l'humain
     private CarteTarot carteJouee = null;
@@ -159,37 +160,39 @@ public class TarotDroidActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-        case R.id.optionNewGame:
-            launchNewGame();
-            return true;
-        case R.id.optionDernierPli:
-            presentationDernierPli();
-            return true;
-        case R.id.optionScores:
-            presentationScoresGlobal();
-            return true;
-        case R.id.optionStats:
-            presentationDialogStats();
-            return true;
-        case R.id.optionResetScores:
-            reInitScores();
-            Toast.makeText(getApplicationContext(), getResources().getString(R.string.inforesetscores), Toast.LENGTH_LONG).show();
-            return true;
-        case R.id.optionChangeName:
-            presentationDialogChangeName();
-            return true;
-        case R.id.optionInfos:
-            presentationInfo();
-            return true;
-        case R.id.optionQuit:
-            askHumanOkForQuit();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.optionNewGame:
+                launchNewGame();
+                return true;
+            case R.id.optionDernierPli:
+                presentationDernierPli();
+                return true;
+            case R.id.optionScores:
+                presentationScoresGlobal();
+                return true;
+            case R.id.optionStats:
+                presentationDialogStats();
+                return true;
+            case R.id.optionResetScores:
+                reInitScores();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.inforesetscores), Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.optionChangeName:
+                presentationDialogChangeName();
+                return true;
+            case R.id.optionInfos:
+                presentationInfo();
+                return true;
+            case R.id.optionQuit:
+                askHumanOkForQuit();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -437,9 +440,9 @@ public class TarotDroidActivity extends Activity {
         // on revient depuis l'interaction avec l'utilisateur ou depuis l'async,
         // il faut regarder la taille du pli
         PlayerTarot currentPlayer = null;
-        MajCartePlayer majAsync = null;
-        int idImage = -1;
-        int idCarte = -1;
+        MajCartePlayer majAsync;
+        int idImage;
+        int idCarte;
         boolean doSwitch = true;
         snapshot = getSnapshot();
         if (pli != null) {
@@ -515,189 +518,189 @@ public class TarotDroidActivity extends Activity {
         }
         if (doSwitch) {
             switch (etape) {
-            case ETAPE_DONNE:
-                // il faut faire les encheres
-                // TODO Tenir compte du donneur pour les ench�res, le premier �
-                // parler est celui qui est juste apres
-                for (int i = indiceEncheres; i < listePlayerTarotFlottante.size(); i++) {
-                    indiceEncheres = i;
-                    PlayerTarot playerTarot = listePlayerTarotFlottante.get(i);
-                    if (!playerTarot.isHuman()) {
-                        enchere = playerTarot.takeDecision(lastEnchere);
-                        playerTarot.getNameJoueurTV().setText(playerTarot.getName() + "\r\n" + TarotReferentiel.getContrat(enchere).getName());
-                        mRedrawHandler.sendEmptyMessage(0);
-                        if (enchere > lastEnchere) {
-                            idPreneur = playerTarot.getIdPlayer();
-                            lastEnchere = enchere;
-                        }
-                    } else {
-                        etape = ETAPE_ENCHERES_HUMAIN;
-                        // chargement du gridview avec le jeu du joueur
-                        adapter = new CardAdapter(this, humanPlayer.getJeu().getHand());
-                        jeuJoueurGW.setAdapter(adapter);
-                        refreshHumanGame();
-                        btnMain.setText(getResources().getString(R.string.btnencheres));
-                        constructItemsEncheres(lastEnchere);
-                        btnMain.setOnClickListener(getListenerValideEnchere());
-                        btnMain.setVisibility(View.VISIBLE);
-                        break;
-                    }
-                }
-                break;
-            case ETAPE_ENCHERES_ROBOTS:
-                // si toutes les encheres sont faites, on doit montrer le chien,
-                // ou pas. Sinon on continue
-                break;
-            case ETAPE_ENCHERES_HUMAIN:
-                break;
-            case ETAPE_ENCHERES_HUMAIN_AFTER:
-                // l'humain vient d'annoncer son contrat. Si toutes les encheres
-                // sont faites, on doit montrer le chien, ou pas. Sinon on
-                // continue
-                btnMain.setVisibility(View.INVISIBLE);
-                enchere = TarotReferentiel.getContrat(items[choixEnchere].toString()).getId();
-                humanPlayer.setEnchere(enchere);
-                complement = "\r\n" + TarotReferentiel.getContrat(enchere).getName();
-                humanPlayer.getNameJoueurTV().setText(namePlayer + complement);
-                mRedrawHandler.sendEmptyMessage(0);
-                if (enchere > lastEnchere) {
-                    idPreneur = humanPlayer.getIdPlayer();
-                    lastEnchere = enchere;
-                }
-                if (indiceEncheres == NB_PLAYERS_TAROT - 1) {
-                    // on a fini les encheres
-                    if (lastEnchere != TarotReferentiel.getIdPasse()) {
-                        gereChien();
-                        mRedrawHandler.sendEmptyMessage(0);
-                    } else {
-                        gereNonPrise();
-                    }
-                } else {
-                    indiceEncheres++;
-                    // Il n'y a plus d'humain
+                case ETAPE_DONNE:
+                    // il faut faire les encheres
+                    // TODO Tenir compte du donneur pour les ench�res, le premier �
+                    // parler est celui qui est juste apres
                     for (int i = indiceEncheres; i < listePlayerTarotFlottante.size(); i++) {
                         indiceEncheres = i;
                         PlayerTarot playerTarot = listePlayerTarotFlottante.get(i);
-                        enchere = playerTarot.takeDecision(lastEnchere);
-                        complement = "\r\n" + TarotReferentiel.getContrat(enchere).getName();
-                        playerTarot.getNameJoueurTV().setText(playerTarot.getName() + complement);
-                        mRedrawHandler.sendEmptyMessage(0);
-                        if (enchere > lastEnchere) {
-                            idPreneur = playerTarot.getIdPlayer();
-                            lastEnchere = enchere;
+                        if (!playerTarot.isHuman()) {
+                            enchere = playerTarot.takeDecision(lastEnchere);
+                            playerTarot.getNameJoueurTV().setText(playerTarot.getName() + "\r\n" + TarotReferentiel.getContrat(enchere).getName());
+                            mRedrawHandler.sendEmptyMessage(0);
+                            if (enchere > lastEnchere) {
+                                idPreneur = playerTarot.getIdPlayer();
+                                lastEnchere = enchere;
+                            }
+                        } else {
+                            etape = ETAPE_ENCHERES_HUMAIN;
+                            // chargement du gridview avec le jeu du joueur
+                            adapter = new CardAdapter(this, humanPlayer.getJeu().getHand());
+                            jeuJoueurGW.setAdapter(adapter);
+                            refreshHumanGame();
+                            btnMain.setText(getResources().getString(R.string.btnencheres));
+                            constructItemsEncheres(lastEnchere);
+                            btnMain.setOnClickListener(getListenerValideEnchere());
+                            btnMain.setVisibility(View.VISIBLE);
+                            break;
                         }
                     }
-
-                    // on a fini les encheres
-                    if (lastEnchere != TarotReferentiel.getIdPasse()) {
-                        gereChien();
-                        mRedrawHandler.sendEmptyMessage(0);
-                    } else {
-                        gereNonPrise();
-                    }
-                }
-                break;
-            case ETAPE_PRESENTATION_CHIEN_AFTER:
-                // si on est ici c'est que quelqu'un prend et que c'est une prise
-                // ou une garde
-                // on doit faire l'ecart
-                listePlayerTarotFlottante.getPreneur().addCartes(chien);
-                if (listePlayerTarotFlottante.getPreneur().isHuman()) {
-                    CardImageWithCheckBoxAdapter adapterBox = new CardImageWithCheckBoxAdapter(this, humanPlayer.getJeu().getHand());
-                    jeuJoueurGW.setAdapter(adapterBox);
-                    jeuJoueurGW.invalidateViews();
-                    // le joueur doit faire son ecart, selection multiple?
-                    btnMain.setText(getResources().getString(R.string.btnvaliderecart));
-                    btnMain.setOnClickListener(getListenerValideEcart());
-                    btnMain.setVisibility(View.VISIBLE);
-                    etape = ETAPE_ECART;
                     break;
-                } else {
-                    // on sait qu'on est dans le cas d'une prise ou garde
-                    plisAttaque.addAll(listePlayerTarotFlottante.getPreneur().gereChien());
-                    etape = ETAPE_ECART_AFTER;
-                }
-            case ETAPE_ECART_AFTER: // ecart done, on joue
-                // si le joueur est humain alors on doit mettre ses cartes
-                // ecartees dans son tas et modifier son jeu
-                if (listePlayerTarotFlottante.getPreneur().isHuman()) {
-                    if (plisAttaque.size() == 0 && plisDefense.size() == 0) {
-                        // on est pas dans le cas d'une garde sans ou contre
-                        CardImageWithCheckBoxAdapter adapterBox = (CardImageWithCheckBoxAdapter) jeuJoueurGW.getAdapter();
-                        for (int z = adapterBox.getItemsChecked().size() - 1; z >= 0; z--) {
-                            CarteTarot carteEcartee = (CarteTarot) listePlayerTarotFlottante.getPreneur().getJeu().getHand().get(adapterBox.getItemsChecked().get(z).intValue());
-                            listePlayerTarotFlottante.getPreneur().getJeu().remove(carteEcartee);
+                case ETAPE_ENCHERES_ROBOTS:
+                    // si toutes les encheres sont faites, on doit montrer le chien,
+                    // ou pas. Sinon on continue
+                    break;
+                case ETAPE_ENCHERES_HUMAIN:
+                    break;
+                case ETAPE_ENCHERES_HUMAIN_AFTER:
+                    // l'humain vient d'annoncer son contrat. Si toutes les encheres
+                    // sont faites, on doit montrer le chien, ou pas. Sinon on
+                    // continue
+                    btnMain.setVisibility(View.INVISIBLE);
+                    enchere = TarotReferentiel.getContrat(items[choixEnchere].toString(), getResources()).getId();
+                    humanPlayer.setEnchere(enchere);
+                    complement = "\r\n" + TarotReferentiel.getContrat(enchere).getName();
+                    humanPlayer.getNameJoueurTV().setText(namePlayer + complement);
+                    mRedrawHandler.sendEmptyMessage(0);
+                    if (enchere > lastEnchere) {
+                        idPreneur = humanPlayer.getIdPlayer();
+                        lastEnchere = enchere;
+                    }
+                    if (indiceEncheres == NB_PLAYERS_TAROT - 1) {
+                        // on a fini les encheres
+                        if (lastEnchere != TarotReferentiel.getIdPasse()) {
+                            gereChien();
+                            mRedrawHandler.sendEmptyMessage(0);
+                        } else {
+                            gereNonPrise();
+                        }
+                    } else {
+                        indiceEncheres++;
+                        // Il n'y a plus d'humain
+                        for (int i = indiceEncheres; i < listePlayerTarotFlottante.size(); i++) {
+                            indiceEncheres = i;
+                            PlayerTarot playerTarot = listePlayerTarotFlottante.get(i);
+                            enchere = playerTarot.takeDecision(lastEnchere);
+                            complement = "\r\n" + TarotReferentiel.getContrat(enchere).getName();
+                            playerTarot.getNameJoueurTV().setText(playerTarot.getName() + complement);
+                            mRedrawHandler.sendEmptyMessage(0);
+                            if (enchere > lastEnchere) {
+                                idPreneur = playerTarot.getIdPlayer();
+                                lastEnchere = enchere;
+                            }
+                        }
+
+                        // on a fini les encheres
+                        if (lastEnchere != TarotReferentiel.getIdPasse()) {
+                            gereChien();
+                            mRedrawHandler.sendEmptyMessage(0);
+                        } else {
+                            gereNonPrise();
                         }
                     }
-                    adapter = new CardAdapter(this, humanPlayer.getJeu().getHand());
-                    jeuJoueurGW.setAdapter(adapter);
-                    btnMain.setVisibility(View.INVISIBLE);
-                    refreshHumanGame();
-                }
-                pli = new PliTarot();
-                play();
-                break;
-            case ETAPE_JEU_ROBOT: // if everybody played then the pli is finished
-                // on fait jouer le currentPlayer
-                fromPresentationPoignee = false;
-                CarteTarot cartePlayed = currentPlayer.play(pli);
-                idImage = currentPlayer.getCarteJoueeIV().getId();
-                idCarte = cartePlayed.getResource();
-                majAsync = new MajCartePlayer(idImage, idCarte);
-                majAsync.execute();
-                currentPlayer.playCard(pli, cartePlayed);
-                if (pli.getVainqueurPli() == currentPlayer.getIdPlayer()) {
-                    indexPositionVainqueurPli = indiceTourDeJeu;
-                }
-                if (nbPlis == 1) {
-                    // on alimente le compteur des poignees pour les decomptes
-                    // finaux
-                    pointsPoignees += TarotReferentiel.getPointsPoignees(currentPlayer.getPoignee());
-                }
-                indiceTourDeJeu++;
-                // on s'arrete ici, la suite c'est l'async qui appelle play.
-                break;
-            case ETAPE_JEU_HUMAIN_BEFORE: // c'est a l'humain de jouer, on lui
-                                          // donne la main
-                if (!humanAskedForPoignee && nbPlis == 1 && currentPlayer.hasPoignee() != 0) {
-                    askHumanForPoignee(currentPlayer);
-                } else {
-                    jeuJoueurGW.setOnItemClickListener(getListenerForPlay());
-                }
-                break;
-            case ETAPE_JEU_HUMAIN_AFTER: // si tout le monde a jou alors le pli
-                                         // est fini
-                // on doit tester la carte jouee
-                // si elle est correcte il la joue, sinon on lui rend la main
-                if (pli == null) {
+                    break;
+                case ETAPE_PRESENTATION_CHIEN_AFTER:
+                    // si on est ici c'est que quelqu'un prend et que c'est une prise
+                    // ou une garde
+                    // on doit faire l'ecart
+                    listePlayerTarotFlottante.getPreneur().addCartes(chien);
+                    if (listePlayerTarotFlottante.getPreneur().isHuman()) {
+                        CardImageWithCheckBoxAdapter adapterBox = new CardImageWithCheckBoxAdapter(this, humanPlayer.getJeu().getHand());
+                        jeuJoueurGW.setAdapter(adapterBox);
+                        jeuJoueurGW.invalidateViews();
+                        // le joueur doit faire son ecart, selection multiple?
+                        btnMain.setText(getResources().getString(R.string.btnvaliderecart));
+                        btnMain.setOnClickListener(getListenerValideEcart());
+                        btnMain.setVisibility(View.VISIBLE);
+                        etape = ETAPE_ECART;
+                        break;
+                    } else {
+                        // on sait qu'on est dans le cas d'une prise ou garde
+                        plisAttaque.addAll(listePlayerTarotFlottante.getPreneur().gereChien());
+                        etape = ETAPE_ECART_AFTER;
+                    }
+                case ETAPE_ECART_AFTER: // ecart done, on joue
+                    // si le joueur est humain alors on doit mettre ses cartes
+                    // ecartees dans son tas et modifier son jeu
+                    if (listePlayerTarotFlottante.getPreneur().isHuman()) {
+                        if (plisAttaque.size() == 0 && plisDefense.size() == 0) {
+                            // on est pas dans le cas d'une garde sans ou contre
+                            CardImageWithCheckBoxAdapter adapterBox = (CardImageWithCheckBoxAdapter) jeuJoueurGW.getAdapter();
+                            for (int z = adapterBox.getItemsChecked().size() - 1; z >= 0; z--) {
+                                CarteTarot carteEcartee = (CarteTarot) listePlayerTarotFlottante.getPreneur().getJeu().getHand().get(adapterBox.getItemsChecked().get(z).intValue());
+                                listePlayerTarotFlottante.getPreneur().getJeu().remove(carteEcartee);
+                            }
+                        }
+                        adapter = new CardAdapter(this, humanPlayer.getJeu().getHand());
+                        jeuJoueurGW.setAdapter(adapter);
+                        btnMain.setVisibility(View.INVISIBLE);
+                        refreshHumanGame();
+                    }
                     pli = new PliTarot();
-                }
-                if (humanPlayer.testCarte(carteJouee, pli)) {
-                    idImage = humanPlayer.getCarteJoueeIV().getId();
-                    idCarte = carteJouee.getResource();
+                    play();
+                    break;
+                case ETAPE_JEU_ROBOT: // if everybody played then the pli is finished
+                    // on fait jouer le currentPlayer
+                    fromPresentationPoignee = false;
+                    CarteTarot cartePlayed = currentPlayer.play(pli);
+                    idImage = currentPlayer.getCarteJoueeIV().getId();
+                    idCarte = cartePlayed.getResource();
                     majAsync = new MajCartePlayer(idImage, idCarte);
-                    // human.setImageResource(carteJouee.getResource());
-                    // int idResource = carteJouee.getResource();
-                    humanPlayer.playCard(pli, carteJouee);
                     majAsync.execute();
-                    if (pli.getVainqueurPli() == humanPlayer.getIdPlayer()) {
+                    currentPlayer.playCard(pli, cartePlayed);
+                    if (pli.getVainqueurPli() == currentPlayer.getIdPlayer()) {
                         indexPositionVainqueurPli = indiceTourDeJeu;
                     }
                     if (nbPlis == 1) {
-                        // on alimente le compteur des poignees pour les
-                        // decomptes finaux
-                        pointsPoignees += TarotReferentiel.getPointsPoignees(humanPlayer.getPoignee());
+                        // on alimente le compteur des poignees pour les decomptes
+                        // finaux
+                        pointsPoignees += TarotReferentiel.getPointsPoignees(currentPlayer.getPoignee());
                     }
                     indiceTourDeJeu++;
-                    adapter = new CardAdapter(this, humanPlayer.getJeu().getHand());
-                    jeuJoueurGW.setAdapter(adapter);
-                    jeuJoueurGW.setOnItemClickListener(null);
-                } else {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.errorcantplaycarte), Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                break;
+                    // on s'arrete ici, la suite c'est l'async qui appelle play.
+                    break;
+                case ETAPE_JEU_HUMAIN_BEFORE: // c'est a l'humain de jouer, on lui
+                    // donne la main
+                    if (!humanAskedForPoignee && nbPlis == 1 && currentPlayer.hasPoignee() != 0) {
+                        askHumanForPoignee(currentPlayer);
+                    } else {
+                        jeuJoueurGW.setOnItemClickListener(getListenerForPlay());
+                    }
+                    break;
+                case ETAPE_JEU_HUMAIN_AFTER: // si tout le monde a jou alors le pli
+                    // est fini
+                    // on doit tester la carte jouee
+                    // si elle est correcte il la joue, sinon on lui rend la main
+                    if (pli == null) {
+                        pli = new PliTarot();
+                    }
+                    if (humanPlayer.testCarte(carteJouee, pli)) {
+                        idImage = humanPlayer.getCarteJoueeIV().getId();
+                        idCarte = carteJouee.getResource();
+                        majAsync = new MajCartePlayer(idImage, idCarte);
+                        // human.setImageResource(carteJouee.getResource());
+                        // int idResource = carteJouee.getResource();
+                        humanPlayer.playCard(pli, carteJouee);
+                        majAsync.execute();
+                        if (pli.getVainqueurPli() == humanPlayer.getIdPlayer()) {
+                            indexPositionVainqueurPli = indiceTourDeJeu;
+                        }
+                        if (nbPlis == 1) {
+                            // on alimente le compteur des poignees pour les
+                            // decomptes finaux
+                            pointsPoignees += TarotReferentiel.getPointsPoignees(humanPlayer.getPoignee());
+                        }
+                        indiceTourDeJeu++;
+                        adapter = new CardAdapter(this, humanPlayer.getJeu().getHand());
+                        jeuJoueurGW.setAdapter(adapter);
+                        jeuJoueurGW.setOnItemClickListener(null);
+                    } else {
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.errorcantplaycarte), Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -736,14 +739,11 @@ public class TarotDroidActivity extends Activity {
     /**
      * Methode qui va decrementer d'une carte basse le tas de carte "from" et
      * incrementer le tas "to".
-     * 
-     * @param from
-     * @param to
      * @return true Si l'echange a pu se faire
      */
     private boolean echangeCarte(List<Carte> from, List<Carte> to) {
         boolean carteBasseFound = false;
-        int index = 0;
+        int index;
         for (index = 0; index < from.size(); index++) {
             CarteTarot carteADonner = (CarteTarot) from.get(index);
             if (carteADonner.isBasse()) {
@@ -760,11 +760,11 @@ public class TarotDroidActivity extends Activity {
     private void calculScores() {
         txtSB = new StringBuilder();
         int chuteReussite = 1;
-        Contrat contratAnnonce = null;
+        Contrat contratAnnonce;
         PlayerTarot attaquant = listePlayerTarotFlottante.getPreneur();
         CompteurPoints compteur = new CompteurPoints(plisAttaque);
         float pointsAttaquant = compteur.comptePointsPlis();
-        int primePetitAuBout = 0;
+        int primePetitAuBout;
 
         // recuperation du contrat du joueur
         contratAnnonce = TarotReferentiel.getContrat(attaquant.getEnchere());
@@ -810,9 +810,9 @@ public class TarotDroidActivity extends Activity {
         if (petitBoutAttaque || petitBoutDefense) {
             primePetitAuBout = contratAnnonce.getMultiplicateur() * 10;
             Logs.info("Prime de petit au bout : " + primePetitAuBout);
-            txtSB.append(Utils.buildMessage(getResources().getString(R.string.txtcalcul6petitbout), 
-                    Integer.toString(primePetitAuBout), petitBoutAttaque ? 
-                            getResources().getString(R.string.lepreneur) 
+            txtSB.append(Utils.buildMessage(getResources().getString(R.string.txtcalcul6petitbout),
+                    Integer.toString(primePetitAuBout), petitBoutAttaque ?
+                            getResources().getString(R.string.lepreneur)
                             : getResources().getString(R.string.ladefense)));
             pointsRealises += petitBoutAttaque ? primePetitAuBout : -primePetitAuBout;
         }
@@ -964,19 +964,19 @@ public class TarotDroidActivity extends Activity {
         chien = new ArrayList<Carte>();
         for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            chien.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            chien.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
         array = o.getJSONArray("plisAttaque");
         plisAttaque = new ArrayList<Carte>();
         for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            plisAttaque.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            plisAttaque.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
         array = o.getJSONArray("plisDefense");
         plisDefense = new ArrayList<Carte>();
         for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            plisDefense.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            plisDefense.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
         donneur = o.getInt("donneur");
         pointsRealises = (float) o.getDouble("pointsRealises");
@@ -1418,7 +1418,7 @@ public class TarotDroidActivity extends Activity {
     }
 
     private void ajoutStats(boolean humanPreneur, boolean vainqueur, int typeContrat) {
-        typeContrat++;
+        /*typeContrat++;
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         // si il n'a pas pris et qu'il a gagne, c'est une victoire en groupe
@@ -1453,7 +1453,7 @@ public class TarotDroidActivity extends Activity {
         editor.putInt("nbvictoiresgroupe", nbVictoiresGroupe);
         editor.putInt("nbdefaites", nbDefaites);
         editor.putInt("nbdefaitesgroupe", nbDefaitesGroupe);
-        editor.commit();
+        editor.commit();*/
     }
 
     private void reInitScores() {

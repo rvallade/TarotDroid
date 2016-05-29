@@ -1,13 +1,13 @@
 package fr.tarot.game;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import fr.commun.game.Carte;
 import fr.commun.game.Jeu;
@@ -90,63 +90,63 @@ public class JeuTarot extends Jeu {
         nbDameSeules = o.getInt("nbDameSeules");
         couplesRoiDame = o.getInt("couplesRoiDame");
         nbRoiSeuls = o.getInt("nbRoiSeuls");
-        excuse = TarotReferentiel.getCarteFromMaoWithID(o.getInt("excuse"));
-        petit = TarotReferentiel.getCarteFromMaoWithID(o.getInt("petit"));
-        vingtEtUn = TarotReferentiel.getCarteFromMaoWithID(o.getInt("vingtEtUn"));
+        excuse = TarotReferentiel.getCarteFromMapWithID(o.getInt("excuse"));
+        petit = TarotReferentiel.getCarteFromMapWithID(o.getInt("petit"));
+        vingtEtUn = TarotReferentiel.getCarteFromMapWithID(o.getInt("vingtEtUn"));
         JSONObject obj;
         JSONArray array = o.getJSONArray("jeuAtout");
         jeuAtout = new ArrayList<CarteTarot>();
-        for (int i = 0 ; i < array.length() ; i++) {
+        for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            jeuAtout.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            jeuAtout.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
         jeuAtoutsMajeurs = new ArrayList<CarteTarot>();
         array = o.getJSONArray("jeuAtoutsMajeurs");
         jeuAtoutsMajeurs = new ArrayList<CarteTarot>();
-        for (int i = 0 ; i < array.length() ; i++) {
+        for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            jeuAtoutsMajeurs.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            jeuAtoutsMajeurs.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
         jeuCoeur = new ArrayList<CarteTarot>();
         array = o.getJSONArray("jeuCoeur");
         jeuCoeur = new ArrayList<CarteTarot>();
-        for (int i = 0 ; i < array.length() ; i++) {
+        for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            jeuCoeur.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            jeuCoeur.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
         jeuTrefle = new ArrayList<CarteTarot>();
         array = o.getJSONArray("jeuTrefle");
         jeuTrefle = new ArrayList<CarteTarot>();
-        for (int i = 0 ; i < array.length() ; i++) {
+        for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            jeuTrefle.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            jeuTrefle.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
         jeuCarreau = new ArrayList<CarteTarot>();
         array = o.getJSONArray("jeuCarreau");
         jeuCarreau = new ArrayList<CarteTarot>();
-        for (int i = 0 ; i < array.length() ; i++) {
+        for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            jeuCarreau.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            jeuCarreau.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
         jeuPique = new ArrayList<CarteTarot>();
         array = o.getJSONArray("jeuPique");
         jeuPique = new ArrayList<CarteTarot>();
-        for (int i = 0 ; i < array.length() ; i++) {
+        for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            jeuPique.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            jeuPique.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
         jeuLongue = new ArrayList<CarteTarot>();
         array = o.getJSONArray("jeuLongue");
         jeuLongue = new ArrayList<CarteTarot>();
-        for (int i = 0 ; i < array.length() ; i++) {
+        for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i);
-            jeuLongue.add(TarotReferentiel.getCarteFromMaoWithID(obj.getInt("id")));
+            jeuLongue.add(TarotReferentiel.getCarteFromMapWithID(obj.getInt("id")));
         }
     }
 
     /**
      * Retire la carte passee en param.
-     * 
+     *
      * @param carte
      */
     public void remove(CarteTarot carte) {
@@ -164,7 +164,7 @@ public class JeuTarot extends Jeu {
 
     /**
      * Retire les cartes passees en param.
-     * 
+     *
      * @param carte
      */
     public void removeAll(Collection<CarteTarot> cartes) {
@@ -175,7 +175,7 @@ public class JeuTarot extends Jeu {
 
     /**
      * Methode qui va renvoyer la carte la plus basse dans la couleur
-     * 
+     *
      * @param idCouleur
      * @return CarteTarot
      */
@@ -189,7 +189,7 @@ public class JeuTarot extends Jeu {
 
     /**
      * Check si il y a encore des cartes dans la couleur.
-     * 
+     *
      * @param idCouleur
      * @return
      */
@@ -204,7 +204,7 @@ public class JeuTarot extends Jeu {
     /**
      * Methode qui va renvoyer la carte la plus haute dans la couleur si c'est
      * un honneur. sinon renvoit la plus basse
-     * 
+     *
      * @param idCouleur
      * @return CarteTarot
      */
@@ -218,23 +218,23 @@ public class JeuTarot extends Jeu {
 
     public List<CarteTarot> getJeuCouleur(int idCouleur) {
         switch (idCouleur) {
-        case 0:
-            return jeuAtout;
-        case 1:
-            return jeuCoeur;
-        case 2:
-            return jeuTrefle;
-        case 3:
-            return jeuCarreau;
-        default:
-            // normalement case 4...
-            return jeuPique;
+            case 0:
+                return jeuAtout;
+            case 1:
+                return jeuCoeur;
+            case 2:
+                return jeuTrefle;
+            case 3:
+                return jeuCarreau;
+            default:
+                // normalement case 4...
+                return jeuPique;
         }
     }
 
     /**
      * On ajoute une carte au jeu.
-     * 
+     *
      * @param CarteTarot
      */
     public void add(CarteTarot carte) {
@@ -251,22 +251,22 @@ public class JeuTarot extends Jeu {
         if (carte.isPetit())
             petit = carte;
         switch (carte.getIdCouleur()) {
-        case 0:
-            addAtout(carte);
-            break;
-        case 1:
-            addCoeur(carte);
-            break;
-        case 2:
-            addTrefle(carte);
-            break;
-        case 3:
-            addCarreau(carte);
-            break;
-        default:
-            // normalement case 4...
-            addPique(carte);
-            break;
+            case 0:
+                addAtout(carte);
+                break;
+            case 1:
+                addCoeur(carte);
+                break;
+            case 2:
+                addTrefle(carte);
+                break;
+            case 3:
+                addCarreau(carte);
+                break;
+            default:
+                // normalement case 4...
+                addPique(carte);
+                break;
         }
 
         Collections.sort(hand, new CarteComparator());
@@ -275,7 +275,7 @@ public class JeuTarot extends Jeu {
 
     /**
      * On ajoute plusieurs cartes au jeu.
-     * 
+     *
      * @param cartes
      */
     public void addAll(List<Carte> cartes) {
@@ -429,7 +429,7 @@ public class JeuTarot extends Jeu {
      * Methode appelee lorsque le joueur n'a plus d'atout et qu'il veut se
      * defausser d'une petite carte. En general il va prendre la plus petite.
      * ATTENTION : peut renvoyer le Petit!!!
-     * 
+     *
      * @return CarteTarot
      */
     public CarteTarot getCarteLaPlusBasse() {
@@ -441,7 +441,7 @@ public class JeuTarot extends Jeu {
      * Methode appelee lorsque le joueur n'a plus d'atout et qu'il est sur que
      * le pli va etre fait par son camp. Si pas d'honneur, renvoit une carte
      * basse.
-     * 
+     *
      * @return CarteTarot
      */
     public CarteTarot getHonneurLePlusHaut() {
@@ -453,7 +453,7 @@ public class JeuTarot extends Jeu {
      * Methode qui va renvoyer l'atout le plus proche et de valeur superieure a
      * valueMin. Attention : peut renvoyer le Petit mais pas l'excuse Si plus
      * d'atout renvoit null
-     * 
+     *
      * @param valeurMin
      * @return CarteTarot or null
      */
@@ -472,7 +472,7 @@ public class JeuTarot extends Jeu {
     /**
      * Methode qui va renvoyer l'atout le plus gros et de valeur superieure a
      * valueMin.. Si pas d'atout trouvee ou plus d'atout renvoit null
-     * 
+     *
      * @param valeurMin
      * @return CarteTarot or null
      */
@@ -491,7 +491,7 @@ public class JeuTarot extends Jeu {
      * Methode qui va renvoyer l'atout le plus faible ormis le petit et
      * l'excuse. Si plus d'atout faibles renvoit l'excuse. null si plus d'atouts
      * ou seulement le petit.
-     * 
+     *
      * @param valeurMin
      * @return CarteTarot or null
      */
@@ -539,7 +539,7 @@ public class JeuTarot extends Jeu {
 
     /**
      * Methode pour trouver une coupe dans le jeu
-     * 
+     *
      * @param nbCartesPossibles
      * @return List<CarteTarot>
      */
@@ -568,7 +568,7 @@ public class JeuTarot extends Jeu {
     /**
      * Methode pour trouver une singlette dans le jeu. Le jeu renvoye ne
      * comprend pas le roi si il est pr�sent dans la liste initiale.
-     * 
+     *
      * @param nbCartesPossibles
      * @return List<CarteTarot>
      */
@@ -606,7 +606,7 @@ public class JeuTarot extends Jeu {
     /**
      * Methode qui va retourner les cartes restantes pour que le chien soit
      * complet. En fonction du nombre d'atouts et de bout
-     * 
+     *
      * @param nbCartesPossibles
      * @param couleurs
      * @return
@@ -615,7 +615,7 @@ public class JeuTarot extends Jeu {
         // TODO faire en fonction du nombre d'atouts et de bouts...
         int couleurLaMoinsLongue = -1;
         int tailleCouleurLaMoinsLongue = 50; // 50 valeur par defaut pour etre
-                                             // sup�rieur � 14
+        // sup�rieur � 14
         boolean retirerRoi = false;
         boolean continuer = true;
         List<CarteTarot> cartesCouleurEcart = null;
@@ -657,9 +657,9 @@ public class JeuTarot extends Jeu {
             }
             if (cartesEcart.size() == nbCartesPossibles
                     || (couleurs[TarotReferentiel.getIdCoeur()] == TarotReferentiel.getIdCoeur()
-                            && couleurs[TarotReferentiel.getIdTrefle()] == TarotReferentiel.getIdTrefle()
-                            && couleurs[TarotReferentiel.getIdCarreau()] == TarotReferentiel.getIdCarreau() && couleurs[TarotReferentiel
-                            .getIdPique()] == TarotReferentiel.getIdPique())) {
+                    && couleurs[TarotReferentiel.getIdTrefle()] == TarotReferentiel.getIdTrefle()
+                    && couleurs[TarotReferentiel.getIdCarreau()] == TarotReferentiel.getIdCarreau() && couleurs[TarotReferentiel
+                    .getIdPique()] == TarotReferentiel.getIdPique())) {
                 continuer = false;
             }
         } while (continuer);
@@ -683,16 +683,16 @@ public class JeuTarot extends Jeu {
 
     private boolean hasRoiInCouleur(int couleur) {
         switch (couleur) {
-        case 1:
-            return roiCoeur;
-        case 2:
-            return roiTrefle;
-        case 3:
-            return roiCarreau;
-        case 4:
-            return roiPique;
-        default:
-            return false;
+            case 1:
+                return roiCoeur;
+            case 2:
+                return roiTrefle;
+            case 3:
+                return roiCarreau;
+            case 4:
+                return roiPique;
+            default:
+                return false;
         }
     }
 
@@ -714,7 +714,7 @@ public class JeuTarot extends Jeu {
 
     /**
      * Methode qui renvoit l'Excuse ou null
-     * 
+     *
      * @return CarteTarot
      */
     public CarteTarot getExcuse() {
@@ -723,7 +723,7 @@ public class JeuTarot extends Jeu {
 
     /**
      * Methode qui renvoit le 21 ou null
-     * 
+     *
      * @return CarteTarot
      */
     public CarteTarot get21() {
@@ -732,7 +732,7 @@ public class JeuTarot extends Jeu {
 
     /**
      * Methode qui renvoit le Petit ou null
-     * 
+     *
      * @return CarteTarot
      */
     public CarteTarot getPetit() {

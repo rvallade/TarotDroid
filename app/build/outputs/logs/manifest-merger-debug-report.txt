@@ -9,6 +9,8 @@ ADDED from C:\Users\Romain\StudioProjects\TarotDroid\app\src\main\AndroidManifes
 		INJECTED from C:\Users\Romain\StudioProjects\TarotDroid\app\src\main\AndroidManifest.xml
 	android:versionName
 		ADDED from C:\Users\Romain\StudioProjects\TarotDroid\app\src\main\AndroidManifest.xml:5:5-31
+		INJECTED from C:\Users\Romain\StudioProjects\TarotDroid\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Romain\StudioProjects\TarotDroid\app\src\main\AndroidManifest.xml
 	android:versionCode
 		ADDED from C:\Users\Romain\StudioProjects\TarotDroid\app\src\main\AndroidManifest.xml:4:5-28
 		INJECTED from C:\Users\Romain\StudioProjects\TarotDroid\app\src\main\AndroidManifest.xml
