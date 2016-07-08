@@ -165,7 +165,6 @@ public class JeuTarot extends Jeu {
     /**
      * Retire les cartes passees en param.
      *
-     * @param carte
      */
     public void removeAll(Collection<CarteTarot> cartes) {
         for (CarteTarot carte : cartes) {
@@ -234,8 +233,6 @@ public class JeuTarot extends Jeu {
 
     /**
      * On ajoute une carte au jeu.
-     *
-     * @param CarteTarot
      */
     public void add(CarteTarot carte) {
         hand.add(carte);
@@ -264,7 +261,6 @@ public class JeuTarot extends Jeu {
                 addCarreau(carte);
                 break;
             default:
-                // normalement case 4...
                 addPique(carte);
                 break;
         }
@@ -492,7 +488,6 @@ public class JeuTarot extends Jeu {
      * l'excuse. Si plus d'atout faibles renvoit l'excuse. null si plus d'atouts
      * ou seulement le petit.
      *
-     * @param valeurMin
      * @return CarteTarot or null
      */
     public CarteTarot getAtoutLePlusFaibleOrmisPetit() {
