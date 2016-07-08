@@ -5,7 +5,7 @@
         jar="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="416dffe031557a6ba94e27ceed9565308ad72daa">
+        sha1="089716f50e5b4704ff07bb4134bb3fb8f0b849b4">
         <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\instant-run_f8fc00ab926862215009866c3ca98388b1bf23fb.jar" />
     </item>
     <item
@@ -19,7 +19,7 @@
         jar="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="b63e2c8286f6261a8a9ee624cd1d55b9b031f7f5">
+        sha1="303d3613646d9a17f2213af8dd0498d560a6124d">
         <dex dex="C:\Users\Romain\StudioProjects\TarotDroid\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_e46d12a444d0c644883741994e6b702d80a54bcf.jar" />
     </item>
     <item

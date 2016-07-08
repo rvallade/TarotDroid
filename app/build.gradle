@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 10
+    compileSdkVersion 23
     buildToolsVersion "23.0.1"
     defaultConfig {
         applicationId "fr.rv.tarotdroid"
@@ -22,6 +22,10 @@ android {
             minifyEnabled true
             proguardFiles 'proguard.cfg'
         }
+    }
+    compileOptions {
+        targetCompatibility 1.6
+        sourceCompatibility 1.6
     }
 }
 
